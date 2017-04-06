@@ -1,0 +1,34 @@
+body{
+	font-family: 'Roboto', sans-serif;
+}
+
+.navbar-inverse {
+    background-color: #324a5e;
+    border-color: #ffffff;
+}
+
+.logo-index {
+	width: 150px;
+	height: 150px;
+}
+.centrar-logo {
+	text-align: -webkit-center;
+    margin-top: 10px;
+}
+
+.titulo {    
+	font-family: 'Roboto', sans-serif;
+	color: #FFFFFF;
+}
+
+.titulo h1 {
+	font-size: 5rem;
+    font-weight: 600;
+	
+}
+
+.titulo p {
+	font-size: 1.5rem;
+    font-weight: lighter;    
+}
+

@@ -1,0 +1,62 @@
+a.navbar-brand {
+	font-size: 45px;
+    font-weight: 600;
+    color: #777;
+}
+
+.navbar-inverse {
+    border-radius: 0;  
+}
+.navbar-inverse .navbar-brand {
+    color: #ffffff;
+}
+
+.inicio {
+	padding:  50px;
+}
+
+.inicio img {
+	width: 320px;
+	height: 320px;
+	-webkit-transition: width 2s; /* For Safari 3.1 to 6.0 */
+    transition: width 0.5s;
+}
+
+.inicio img:hover {
+	width: 340px;
+	height: 340px;
+	opacity: 0.9;
+}
+
+.flip img {
+	width: 200px;
+	height: 200px;
+}
+.flip {	
+	position: relative;
+	transition: all 1s ease;
+	transform: perspective(600px);
+	transform-origin: 100% 50%;
+	transform-style: preserve-3d;
+}
+
+.flip:hover{
+	transform: perspective(600px) rotateY(-180deg) translateX(100%);
+}
+
+.flip .flip-1,
+.flip .flip-2{
+	position: absolute;
+	backface-visibility: hidden;
+}
+.flip .flip-2{
+	margin-left: 100px;
+	transform: rotateY(-180deg);
+	font-size: 30px;
+	font-weight: 600;
+	text-align: left;
+}
+
+#section-2 {
+	margin-top: 260px;
+}
