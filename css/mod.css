@@ -40,7 +40,7 @@ a.navbar-brand {
 	transform-style: preserve-3d;
 }
 
-.flip:hover{
+.flip:active {
 	transform: perspective(600px) rotateY(-180deg) translateX(100%);
 }
 
@@ -52,11 +52,16 @@ a.navbar-brand {
 .flip .flip-2{
 	margin-left: 100px;
 	transform: rotateY(-180deg);
-	font-size: 30px;
+	font-size: 50px;
 	font-weight: 600;
 	text-align: left;
+	padding-top: 20px;
 }
 
-#section-2 {
+#section-2 {	
 	margin-top: 260px;
+}
+
+#section-3 {	
+	margin-top: 300px;	
 }

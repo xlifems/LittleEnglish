@@ -27,4 +27,16 @@ $(document).ready(function (){
       } 
     });
 
+    $("div.flip").click(function(){      
+      reproducir_sonido($(this).attr('id'));        
+    }); 
+
   });
+
+
+function reproducir_sonido(animal) { 
+  console.log(animal);
+  var sonido = new Audio('./sound/animals/'+animal+'.mp3');
+  sonido.play(); 
+
+}
