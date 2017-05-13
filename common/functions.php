@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 error_reporting(E_ALL ^ E_NOTICE);
 function route($page){
@@ -7,17 +7,17 @@ function route($page){
 		case 'registrar_usuario':
 			include 'pages/registrar_usuarios.php';
 			break;
-			
+
 		case 'animals':
 			include 'pages/animals.php';
 			break;
 
-		case 'registrar_drone':
-			include 'pages/registrar_drone.php';
+		case 'vocales':
+			include 'pages/vocales.php';
 			break;
 
-		case 'registrar_vuelos':
-			include 'pages/registrar_vuelos.php';
+		case 'numeros':
+			include 'pages/numeros.html';
 			break;
 
 		case 'salir':
