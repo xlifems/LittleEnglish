@@ -78,3 +78,9 @@ a.navbar-brand {
 	text-transform: uppercase;
 	font-weight: 600;
 }
+
+.btn-opcion {
+	padding: 40px;
+	margin-top: 40px;
+	width: 170px;
+}

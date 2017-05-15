@@ -1,5 +1,5 @@
+var opcionE1 = "";
 $(document).ready(function (){
-
   /**
   * [description]
   * @param  {[type]} ){                                                     var usuario [description]
@@ -32,7 +32,7 @@ $(document).ready(function (){
   });
 
   $("#play-vocal").click( function () {
-    var vocal = $('#vocal').attr('class');    
+    var vocal = $('#vocal').attr('class');
     play_vocales(vocal);
   });
 
@@ -49,6 +49,13 @@ $(document).ready(function (){
 
   $("#next-numero").click( function () {
     next_numero();
+  });
+
+  $("#opc1, #opc2, #opc3").click( function () {
+    var opc = $(this).text();
+    alert(opc);
+    opcionE1 = opc;
+     $(this).addClass('btn-success');
   });
 
 });
@@ -95,17 +102,39 @@ function next_vocal() {
 }
 
 function next_numero() {
-  var numeros = [0,1,2,3,4,5,6,7,8,9,10];
   var numeroActual = $('#numero');
-
   var numeroSiguiente = parseInt(numeroActual.attr('class')) + 1;
   numeroActual.removeClass(numeroActual.attr('class'));
 
   if (numeroSiguiente > 10){
     numeroSiguiente = 1 ;
     numeroActual.removeClass(numeroActual.attr('class'));
+    swal("Lección completada!", "Hemos escuchemos como suenan los números!", "success")
   }
-
   numeroActual.attr('src','img/numeros/'+numeroSiguiente+'.png');
   numeroActual.addClass(''+numeroSiguiente);
+}
+
+function next_e1() {
+  var opciones = ['e1','e2','e4','e5','e8'];
+  var numeroActual = $('#numero_e1');
+  var numeroSiguiente = "";
+
+  for (i = 0; i < opciones.length; i++) {
+    if ( numeroActual.attr('class') == opciones[i]) {
+       numeroSiguiente = opciones[i+1];
+    }
+  }
+  numeroActual.attr('src','img/numeros/'+numeroSiguiente+'.png');
+  numeroActual.removeClass(numeroActual.attr('class'));
+  numeroActual.addClass(''+numeroSiguiente);
+}
+
+function calificar_e1() {
+  var numeroActual = $('#numero_e1');
+}
+
+
+function functionName() {
+  sweetAlert("Oops...", "Something went wrong!", "error");
 }

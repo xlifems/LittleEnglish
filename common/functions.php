@@ -19,7 +19,9 @@ function route($page){
 		case 'numeros':
 			include 'pages/numeros.html';
 			break;
-
+		case 'numeros_e1':
+			include 'pages/numeros_e1.php';
+			break;
 		case 'salir':
 			session_start();
 			session_unset();

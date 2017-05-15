@@ -1,13 +1,13 @@
-<?php 
+<?php
 class Principal {
   private $_bdh;
 	function __construct (){
 		try {
-        $this->_bdh = new PDO('mysql:host=localhost;dbname=inspira','root', '');
+        $this->_bdh = new PDO('mysql:host=localhost;dbname=ingles','root', '');
         $this->_bdh->exec("SET NAMES utf8");
         $this->_bdh->exec("SET CHARACTER SET utf8");
         $this->_bdh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $this->_bdh->setAttribute(PDO::ATTR_EMULATE_PREPARES, FALSE);			
+        $this->_bdh->setAttribute(PDO::ATTR_EMULATE_PREPARES, FALSE);
 		} catch (PDOException $e) {
 			echo "Error:" . $e->getMessage();
 		}
@@ -20,7 +20,7 @@ class Principal {
                 if ($query->rowCount() == 1) {
                     $row = $query->fetch();
                     $savedPasswordHash = $row['usuario_password'];
-                    
+
                     if($savedPasswordHash == md5($password)){
                     	  session_start();
                         $_SESSION["nickname"]  = $row["usuario_nickname"];
@@ -52,7 +52,7 @@ class Principal {
         $query = $this->_bdh->prepare("SELECT usuario_id, usuario_nickname, usuario_nombres, usuario_apellidos  FROM ins_usuarios WHERE usuario_tipo = 'clien'");
         $query->execute();
         return $query->fetchAll(PDO::FETCH_ASSOC);
-        $this->_bdh = null;      
+        $this->_bdh = null;
     } catch (PDOException $e) {
         echo "Error:" . $e->getMessage();
     }
@@ -71,7 +71,7 @@ class Principal {
 
    function registrar_usuario($data){
     try {
-      session_start();      
+      session_start();
       $query = $this->_bdh->prepare("INSERT INTO `ins_usuarios` (`usuario_nickname`, `usuario_tidentificacion`, `usuario_identificacion`, `usuario_nombres`, `usuario_apellidos`, `usuario_departamento`, `usuario_ciudad`, `usuario_direccion`, `usuario_barrio`, `usuario_telefono`, `usuario_correo`, `usuario_password`, `usuario_tipo`) VALUES (:usuario_nickname, :usuario_tidentificacion, :usuario_identificacion, :usuario_nombres, :usuario_apellidos, :usuario_departamento, :usuario_ciudad, :usuario_direccion, :usuario_barrio, :usuario_telefono, :usuario_correo, :usuario_password, :usuario_tipo)");
       $res = $query->execute(array(
         'usuario_nickname'   => $data[0]['value'],
@@ -96,7 +96,7 @@ class Principal {
 
    function registrar_terreno($data){
     try {
-      session_start();      
+      session_start();
       $query = $this->_bdh->prepare("INSERT INTO ins_terreno (terreno_ubicacion, terreno_ASNM, terreno_areatotal, terreno_areasembrada, terreno_acesso, terreno_recursoshidricos, terreno_fertilizacion, terreno_usosuelos, ins_usuario_id) VALUES ( :terreno_ubicacion, :terreno_ASNM, :terreno_areatotal, :terreno_areasembrada, :terreno_acesso, :terreno_recursoshidricos, :terreno_fertilizacion, :terreno_usosuelos, :ins_usuario_id)");
       $res = $query->execute(array(
           ':terreno_ubicacion' => $data[0]['value'],
@@ -117,7 +117,7 @@ class Principal {
 
     function registrar_vuelo($data){
     try {
-      session_start();      
+      session_start();
       $query = $this->_bdh->prepare("INSERT INTO `ins_vuelo` (`vuelo_tdrone`, `vuelo_altura`, `vuelo_tiempo`, `vuelo_velocidad`, `vuelo_ruta`, `vuelo_sensores`, `vuelo_caracteristica`, `vuelo_fecha`, `ins_cultivos_id`) VALUES (:vuelo_tdrone, :vuelo_altura, :vuelo_tiempo, :vuelo_velocidad, :vuelo_ruta, :vuelo_sensores, :vuelo_caracteristica, :vuelo_fecha, :ins_cultivos_id)");
       $res = $query->execute(array(
         ':vuelo_tdrone'   => $data[0]['value'],
@@ -138,7 +138,7 @@ class Principal {
 
    function registrar_cultivo($data){
     try {
-      session_start();      
+      session_start();
       $query = $this->_bdh->prepare("INSERT INTO `ins_cultivos` (`cultivo_tipo`, `cultivo_edad`, `cultivo_areaefectiva`, `cultivo_fechacosecha`, `cultivo_fechasiembra`, `cultivo_usosuelos`, `ins_terreno_idTerreno`) VALUES (:cultivo_tipo, :cultivo_edad, :cultivo_areaefectiva, :cultivo_fechacosecha, :cultivo_fechasiembra, :cultivo_usosuelos, :ins_terreno_idTerreno)");
       $res = $query->execute(array(
         ':cultivo_tipo' => $data[0]['value'],
@@ -157,7 +157,7 @@ class Principal {
 
    function registrar_condiciones($data){
     try {
-      session_start();      
+      session_start();
       $query = $this->_bdh->prepare("INSERT INTO `ins_condiciones` (`condicion_temperatura`, `condicion_humedad`, `condicion_presipitacion`, `condicion_luminosidad`, `condicion_velocidad`, `ins_vuelo_vuelo_id`) VALUES ('1', '1', '1', '1', '1', '2')");
       $res = $query->execute(array(
         ));
