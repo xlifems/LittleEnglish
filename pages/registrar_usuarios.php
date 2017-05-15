@@ -1,6 +1,6 @@
 <div class="col-md-12">
 	<div class="page-header">
-    	<h2>Registrar usuarios</h2>      
+    	<h2>Registrar usuarios</h2>
  	</div>
 	<form id="form_usuario">
 	<div class="row">
@@ -8,7 +8,7 @@
 			<div class="form-group">
 				<label>Usuario</label>
 				<input type="" name="usuario_nickname" class="form-control" required="">
-			</div>			
+			</div>
 		</div>
 		<div class="col-md-3">
 			<div class="form-group">
@@ -31,13 +31,13 @@
 		<div class="col-md-6">
 			<div class="form-group">
 			<label>Nombres</label>
-			<input type="" name="usuario_nombres" class="form-control" required="">	
+			<input type="" name="usuario_nombres" class="form-control" required="">
 			</div>
 		</div>
 		<div class="col-md-6">
 			<div class="form-group">
 			<label>Apellidos</label>
-			<input type="" name="usuario_apellidos" class="form-control" required="">	
+			<input type="" name="usuario_apellidos" class="form-control" required="">
 			</div>
 		</div>
 	</div>
@@ -45,9 +45,9 @@
 		<div class="col-md-6">
 			<div class="form-group">
 				<label>Departamento</label>
-				<select name="usuario_departamento" id="usuario_departamento" class="form-control" required="">			
+				<select name="usuario_departamento" id="usuario_departamento" class="form-control" required="">
 				</select>
-			</div>			
+			</div>
 		</div>
 		<div class="col-md-6">
 			<div class="form-group">
@@ -55,11 +55,11 @@
 				<select name="usuario_ciudad" id="usuario_ciudad" class="form-control" required="">
 					<option selected="">Seleccioné  un departamento</option>
 				</select>
-			</div>			
+			</div>
 		</div>
 		<div class="col-md-4"></div>
 	</div>
-	<div class="row">		
+	<div class="row">
 		<div class="col-md-6">
 			<div class="form-group">
 			<label>Direccion</label>
@@ -97,14 +97,13 @@
 			<label>Tipo de usuario</label>
 			<select name="usuario_tipo" class="form-control" required="">
 				<option value="admin">Administrador</option>
-				<option value="cliente">Cliente</option>
-				<option value="empleado">Empleado</option>
+				<option value="usuario">Usuario</option>
 			</select>
 			</div>
 
 		</div>
 	</div>
 	<button type="submit" class="btn btn-default">Registrar</button>
-	<button class="btn btn-default">Cancelar</button>	
-	</form>	
+	<button class="btn btn-default">Cancelar</button>
+	</form>
 </div>

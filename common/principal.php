@@ -3,7 +3,7 @@ class Principal {
   private $_bdh;
 	function __construct (){
 		try {
-        $this->_bdh = new PDO('mysql:host=localhost;dbname=ingles','root', '');
+        $this->_bdh = new PDO('mysql:host=localhost;dbname=inspira','root', '');
         $this->_bdh->exec("SET NAMES utf8");
         $this->_bdh->exec("SET CHARACTER SET utf8");
         $this->_bdh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -44,12 +44,11 @@ class Principal {
       } catch (PDOException $e) {
         echo "Error:" . $e->getMessage();
       }
-
    }
 
    function load_clientes(){
     try {
-        $query = $this->_bdh->prepare("SELECT usuario_id, usuario_nickname, usuario_nombres, usuario_apellidos  FROM ins_usuarios WHERE usuario_tipo = 'clien'");
+        $query = $this->_bdh->prepare("SELECT usuario_id, usuario_nickname, usuario_nombres, usuario_apellidos  FROM ins_usuarios WHERE usuario_tipo = 'user'");
         $query->execute();
         return $query->fetchAll(PDO::FETCH_ASSOC);
         $this->_bdh = null;
@@ -94,66 +93,6 @@ class Principal {
     }
    }
 
-   function registrar_terreno($data){
-    try {
-      session_start();
-      $query = $this->_bdh->prepare("INSERT INTO ins_terreno (terreno_ubicacion, terreno_ASNM, terreno_areatotal, terreno_areasembrada, terreno_acesso, terreno_recursoshidricos, terreno_fertilizacion, terreno_usosuelos, ins_usuario_id) VALUES ( :terreno_ubicacion, :terreno_ASNM, :terreno_areatotal, :terreno_areasembrada, :terreno_acesso, :terreno_recursoshidricos, :terreno_fertilizacion, :terreno_usosuelos, :ins_usuario_id)");
-      $res = $query->execute(array(
-          ':terreno_ubicacion' => $data[0]['value'],
-          ':terreno_ASNM' => $data[1]['value'],
-          ':terreno_areatotal' => $data[2]['value'],
-          ':terreno_areasembrada' => $data[3]['value'],
-          ':terreno_acesso' => $data[4]['value'],
-          ':terreno_recursoshidricos' => $data[5]['value'],
-          ':terreno_fertilizacion' => $data[6]['value'],
-          ':terreno_usosuelos' => $data[7]['value'],
-          ':ins_usuario_id' => $data[8]['value']
-        ));
-      return $res;
-    } catch (PDOException $e) {
-        echo "Error!" . $e->getMessage();
-    }
-   }
-
-    function registrar_vuelo($data){
-    try {
-      session_start();
-      $query = $this->_bdh->prepare("INSERT INTO `ins_vuelo` (`vuelo_tdrone`, `vuelo_altura`, `vuelo_tiempo`, `vuelo_velocidad`, `vuelo_ruta`, `vuelo_sensores`, `vuelo_caracteristica`, `vuelo_fecha`, `ins_cultivos_id`) VALUES (:vuelo_tdrone, :vuelo_altura, :vuelo_tiempo, :vuelo_velocidad, :vuelo_ruta, :vuelo_sensores, :vuelo_caracteristica, :vuelo_fecha, :ins_cultivos_id)");
-      $res = $query->execute(array(
-        ':vuelo_tdrone'   => $data[0]['value'],
-        ':vuelo_altura'   => $data[1]['value'],
-        ':vuelo_tiempo'   => $data[2]['value'],
-        ':vuelo_velocidad'    => $data[3]['value'],
-        ':vuelo_ruta'   => $data[4]['value'],
-        ':vuelo_sensores'   => $data[5]['value'],
-        ':vuelo_caracteristica'   => $data[6]['value'],
-        ':vuelo_fecha'    => $data[7]['value'],
-        ':ins_cultivos_id'    => $data[8]['value']
-        ));
-      return $res;
-    } catch (PDOException $e) {
-        echo "Error!" . $e->getMessage();
-    }
-   }
-
-   function registrar_cultivo($data){
-    try {
-      session_start();
-      $query = $this->_bdh->prepare("INSERT INTO `ins_cultivos` (`cultivo_tipo`, `cultivo_edad`, `cultivo_areaefectiva`, `cultivo_fechacosecha`, `cultivo_fechasiembra`, `cultivo_usosuelos`, `ins_terreno_idTerreno`) VALUES (:cultivo_tipo, :cultivo_edad, :cultivo_areaefectiva, :cultivo_fechacosecha, :cultivo_fechasiembra, :cultivo_usosuelos, :ins_terreno_idTerreno)");
-      $res = $query->execute(array(
-        ':cultivo_tipo' => $data[0]['value'],
-        ':cultivo_edad' => $data[1]['value'],
-        ':cultivo_areaefectiva' => $data[2]['value'],
-        ':cultivo_fechacosecha' => $data[3]['value'],
-        ':cultivo_fechasiembra' => $data[4]['value'],
-        ':cultivo_usosuelos' => $data[5]['value'],
-        ':ins_terreno_idTerreno' => $data[6]['value']
-        ));
-      return $res;
-    } catch (PDOException $e) {
-        echo "Error!" . $e->getMessage();
-    }
-   }
 
    function registrar_condiciones($data){
     try {

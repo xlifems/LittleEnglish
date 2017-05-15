@@ -27,6 +27,30 @@ $(document).ready(function (){
     }
   });
 
+  //Login mediante enter
+  $('#password').keypress(function(e) {
+    if(e.which == 13) {
+      var usuario = $("#usuario").val();
+      var password = $("#password").val();
+      if (usuario == '' || password == ''){
+        console.log("error");
+      } else {
+        $.ajax({
+          url: "ajax/ajax_actions.php",
+          type: "POST",
+          data: {usuario: usuario, password: password, accion: "login_user"},
+          cache: false
+        }).done(function(resp){
+          if(resp == 1){
+            window.location.href = "home.php";
+          } else {
+            console.log("error logueo");
+          }
+        })
+      }
+    }
+  });
+
   $("div.flip").click(function(){
     reproducir_sonido($(this).attr('id'));
   });
@@ -55,7 +79,7 @@ $(document).ready(function (){
     var opc = $(this).text();
     alert(opc);
     opcionE1 = opc;
-     $(this).addClass('btn-success');
+    $(this).addClass('btn-success');
   });
 
 });
@@ -89,12 +113,12 @@ function next_vocal() {
   var vocalSiguiente = "";
   for (i = 0; i < vocales.length; i++) {
     if (vocales[i] == vocalActual.attr('class')){
-        vocalSiguiente = vocales[i+1];
-        vocalActual.removeClass(vocales[i]);
+      vocalSiguiente = vocales[i+1];
+      vocalActual.removeClass(vocales[i]);
     }
     if ( vocalSiguiente == undefined){
-        vocalSiguiente = 'a';
-        vocalActual.removeClass(vocales[i]);
+      vocalSiguiente = 'a';
+      vocalActual.removeClass(vocales[i]);
     }
   }
   vocalActual.attr('src','img/vocales/'+vocalSiguiente+'.png');
@@ -122,7 +146,7 @@ function next_e1() {
 
   for (i = 0; i < opciones.length; i++) {
     if ( numeroActual.attr('class') == opciones[i]) {
-       numeroSiguiente = opciones[i+1];
+      numeroSiguiente = opciones[i+1];
     }
   }
   numeroActual.attr('src','img/numeros/'+numeroSiguiente+'.png');
