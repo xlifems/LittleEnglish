@@ -8,17 +8,17 @@
 	</div>
 	<div class="col-sm-5 col-sm-offset-1">
 		<div class="row">
-			<button id="opc1" onclick="play_numeros(1)" class="btn btn-default btn-lg btn-opcion">
+			<button id="opc1"  class="btn btn-default btn-lg btn-opcion">
 				<span class="glyphicon glyphicon-volume-up"></span> One
 			</button>
 		</div>
 		<div class="row">
-			<button id="opc2" onclick="play_numeros(5) " class="btn btn-default btn-lg btn-opcion">
+			<button id="opc2"  class="btn btn-default btn-lg btn-opcion">
 				<span class="glyphicon glyphicon-volume-up"></span> Five
 			</button>
 		</div>
 		<div class="row">
-			<button id="opc3" onclick="play_numeros(3) " class="btn btn-default btn-lg btn-opcion">
+			<button id="opc3"  class="btn btn-default btn-lg btn-opcion">
 				<span class="glyphicon glyphicon-volume-up"></span> Three
 			</button>
 		</div>
@@ -29,7 +29,7 @@
 		<button id="" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-chevron-left"></span></button>
 	</div>
 	<div class="col-sm-3 col-sm-offset-6">
-		<button onclick="next_e1()" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-chevron-right"></button>
+		<button id="calificar-e1"  class="btn btn-success btn-lg"><span class="glyphicon glyphicon-check"></button>
 		<button id="next-numero" class="btn btn-success btn-lg"></span>Siguiente lección</span></button>
 	</div>
 </div>

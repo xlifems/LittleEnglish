@@ -77,11 +77,14 @@ $(document).ready(function (){
 
   $("#opc1, #opc2, #opc3").click( function () {
     var opc = $(this).text();
-    alert(opc);
-    opcionE1 = opc;
+    opcionE1 = opc.trim();
+    play_numeros(convertir_num(opcionE1));
     $(this).addClass('btn-success');
   });
 
+  $("#calificar-e1").click( function () {
+    calificar_e1();
+  });
 });
 
 function reproducir_sonido(animal) {
@@ -152,10 +155,95 @@ function next_e1() {
   numeroActual.attr('src','img/numeros/'+numeroSiguiente+'.png');
   numeroActual.removeClass(numeroActual.attr('class'));
   numeroActual.addClass(''+numeroSiguiente);
+  asignar_opciones(numeroSiguiente);
+}
+
+function calcular_respuesta_e1(){
+  var respuesta = "";
+  var numeroActual = $('#numero_e1').attr('class');
+  if (numeroActual == 'e1') {
+    respuesta = "One";
+  } else if (numeroActual == 'e2') {
+    respuesta = "Two";
+  } else if (numeroActual == 'e4') {
+    respuesta = "Four";
+  } else if (numeroActual == 'e5') {
+    respuesta = "Five";
+  } else if (numeroActual == 'e8') {
+    respuesta = "Eight";
+  }
+  return respuesta;
 }
 
 function calificar_e1() {
-  var numeroActual = $('#numero_e1');
+  if (calcular_respuesta_e1() === opcionE1 ){
+    swal("Ok!", "Respuesta Correcta!", "success");
+    next_e1();
+  }else {
+    sweetAlert("Oops... ", "Respuesta incorrecta!", "error");
+  }
+}
+
+function asignar_opciones(valor) {
+  var opc1 = $('#opc1');
+  var opc2 = $('#opc2');
+  var opc3 = $('#opc3');
+  if (valor == 'e2') {
+    opc1.text('One');
+    opc2.text('Six');
+    opc3.text('Two');
+  }else if (valor == 'e4') {
+    opc1.text('Four');
+    opc2.text('Three');
+    opc3.text('Nine');
+  }else if (valor == 'e5') {
+    opc1.text('Ten');
+    opc2.text('Seven');
+    opc3.text('Five');
+  }else if (valor == 'e8') {
+    opc1.text('Eight');
+    opc2.text('Three');
+    opc3.text('Two');
+  }
+}
+
+function convertir_num(numero) {
+  var num = 0;
+  switch (numero) {
+    case 'One':
+    num = 1;
+    break;
+    case 'Two':
+    num = 2;
+    break;
+    case 'Three':
+    num = 3;
+    break;
+    case 'Four':
+    num = 4;
+    break;
+    case 'Five':
+    num = 5;
+    break;
+    case 'Six':
+    num = 6;
+    break;
+    case 'Seven':
+    num = 7;
+    break;
+    case 'Eight':
+    num = 8;
+    break;
+    case 'Nine':
+    num = 9;
+    break;
+    case 'Ten':
+    num = 10;
+    break;
+    default:
+      num = 0;
+  }
+  return num;
 }
 
 

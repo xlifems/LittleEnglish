@@ -3,7 +3,7 @@ class Principal {
   private $_bdh;
 	function __construct (){
 		try {
-        $this->_bdh = new PDO('mysql:host=localhost;dbname=inspira','root', '');
+        $this->_bdh = new PDO('mysql:host=localhost;dbname=ingles','root', '');
         $this->_bdh->exec("SET NAMES utf8");
         $this->_bdh->exec("SET CHARACTER SET utf8");
         $this->_bdh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
