@@ -9,6 +9,9 @@ function route($page){
 		case 'listar_usuarios':
 		include 'pages/listar_usuarios.php';
 		break;
+		case 'modificar_usuarios':
+		include 'pages/modificar_usuarios.php';
+		break;
 		case 'animals':
 		include 'pages/animals.php';
 		break;

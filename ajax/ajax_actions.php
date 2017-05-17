@@ -24,6 +24,11 @@ switch ($_REQUEST['accion']) {
 		echo $res;
 		break;
 
+	case 'cargar_datos_usuario';
+		$cli = $principal -> cargar_datos_usuario($_REQUEST['usuario_id']);
+		echo json_encode($cli);
+		break;
+
 	case 'login_user':
 		$user = trim($_REQUEST['usuario']);
 		$pass = $_REQUEST['password'];

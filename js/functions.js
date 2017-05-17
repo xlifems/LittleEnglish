@@ -4,7 +4,21 @@ $(document).ready(function (){
 	e.preventDefault();
 	var data = $(this).serializeArray();
 	$.post("ajax/ajax_actions.php", {data, accion: "registrar_usuario"}, function(resp){
-		console.log(data);
+    if (resp > 0) {
+      swal("Ok!", "Registro agregado satisfactoriamente", "success");
+      console.log(data);
+    }
+	});
+ });
+
+ $("#form_usuario_update").submit(function(e) {
+	e.preventDefault();
+	var data = $(this).serializeArray();
+	$.post("ajax/ajax_actions.php", {data, accion: "registrar_usuario"}, function(resp){
+    if (resp > 0) {
+      swal("Ok!", "Registro agregado satisfactoriamente", "success");
+      console.log(data);
+    }
 	});
  });
 

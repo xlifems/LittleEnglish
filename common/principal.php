@@ -48,7 +48,7 @@ class Principal {
 
   function load_clientes(){
     try {
-      $query = $this->_bdh->prepare("SELECT usuario_id, usuario_nickname, usuario_nombres, usuario_apellidos  FROM ins_usuarios WHERE usuario_tipo = 'user'");
+      $query = $this->_bdh->prepare("SELECT * FROM ins_usuarios WHERE usuario_tipo = 'user'");
       $query->execute();
       return $query->fetchAll(PDO::FETCH_ASSOC);
       $this->_bdh = null;
@@ -107,6 +107,43 @@ class Principal {
     }
   }
 
-}
+  function cargar_datos_usuario($usuario_id){
+    try {
+      $query = $this->_bdh->prepare("SELECT * FROM ins_usuarios WHERE `usuario_id` = :usuario_id");
+      $query->execute(array(":usuario_id" => $usuario_id));
+      return $query->fetch();
+      $this->_bdh = null;
+    } catch (PDOException $e) {
+      echo "Error:" . $e->getMessage();
+    }
+  }
 
-?>
+  function cargar_datos_usuario($data, $usuario_id){
+    try {
+      $sql = "UPDATE ins_usuarios SET `usuario_nickname`  = :usuario_nickname, `usuario_tidentificacion` = :usuario_tidentificacion, `usuario_identificacion` = :usuario_identificacion ,
+                                      `usuario_nombres`   = :usuario_nombres, `usuario_apellidos` = :usuario_apellidos , `usuario_departamento` = :usuario_departamento , `usuario_ciudad` = :usuario_ciudad ,
+                                      `usuario_direccion` = :usuario_direccion, `usuario_barrio` = :usuario_barrio, `usuario_telefono` = :usuario_telefono , `usuario_correo` = :usuario_correo,
+                                      `usuario_password`  = :usuario_password , `usuario_tipo`= :usuario_tipo WHERE `usuario_id` = :usuario_id";
+      $query = $this->_bdh->prepare($sql);
+      $res = $query->execute(array(
+        'usuario_nickname'   => $data[0]['value'],
+        'usuario_tidentificacion'  => $data[1]['value'],
+        'usuario_identificacion'   => $data[2]['value'],
+        'usuario_nombres'  => $data[3]['value'],
+        'usuario_apellidos'  => $data[4]['value'],
+        'usuario_departamento'   => $data[5]['value'],
+        'usuario_ciudad'   => $data[6]['value'],
+        'usuario_direccion'  => $data[7]['value'],
+        'usuario_barrio'   => $data[8]['value'],
+        'usuario_telefono'   => $data[9]['value'],
+        'usuario_correo'   => $data[10]['value'],
+        'usuario_password'   => $data[11]['value'],
+        'usuario_tipo'   => $data[12]['value']
+      ));
+      return $res;
+    } catch (PDOException $e) {
+      echo "Error:" . $e->getMessage();
+    }
+  }
+
+  ?>
