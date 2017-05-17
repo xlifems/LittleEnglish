@@ -19,6 +19,11 @@ switch ($_REQUEST['accion']) {
 		echo $usu;
 		break;
 
+	case 'modificar_usuario':
+		$usu = $principal -> modificar_usuario($_POST['data'], $_REQUEST['usuario_id']);
+		echo $usu;
+		break;
+
 	case 'eliminar_usuario':
 		$res = $principal ->eliminar_usuarios($_REQUEST['usuario_id']);
 		echo $res;

@@ -14,10 +14,13 @@ $(document).ready(function (){
  $("#form_usuario_update").submit(function(e) {
 	e.preventDefault();
 	var data = $(this).serializeArray();
-	$.post("ajax/ajax_actions.php", {data, accion: "registrar_usuario"}, function(resp){
+	$.post("ajax/ajax_actions.php", {data, accion: "modificar_usuario", usuario_id :$('#usuario_id').val()}, function(resp){
     if (resp > 0) {
-      swal("Ok!", "Registro agregado satisfactoriamente", "success");
-      console.log(data);
+      swal("Ok!", "Registro modificado satisfactoriamente", "success");
+      $('#tbody-usuarios').html("");
+      cargarUsuarios();
+      $('#row-lista').css('display','block');
+      $('#row-modificar').fadeOut();
     }
 	});
  });

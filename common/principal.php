@@ -118,12 +118,12 @@ class Principal {
     }
   }
 
-  function cargar_datos_usuario($data, $usuario_id){
+  function modificar_usuario($data, $usuario_id){
     try {
-      $sql = "UPDATE ins_usuarios SET `usuario_nickname`  = :usuario_nickname, `usuario_tidentificacion` = :usuario_tidentificacion, `usuario_identificacion` = :usuario_identificacion ,
-                                      `usuario_nombres`   = :usuario_nombres, `usuario_apellidos` = :usuario_apellidos , `usuario_departamento` = :usuario_departamento , `usuario_ciudad` = :usuario_ciudad ,
-                                      `usuario_direccion` = :usuario_direccion, `usuario_barrio` = :usuario_barrio, `usuario_telefono` = :usuario_telefono , `usuario_correo` = :usuario_correo,
-                                      `usuario_password`  = :usuario_password , `usuario_tipo`= :usuario_tipo WHERE `usuario_id` = :usuario_id";
+      $sql = "UPDATE ins_usuarios SET `usuario_nickname`  = :usuario_nickname,  `usuario_tidentificacion` = :usuario_tidentificacion, `usuario_identificacion` = :usuario_identificacion ,
+      `usuario_nombres`   = :usuario_nombres,   `usuario_apellidos` = :usuario_apellidos , `usuario_departamento` = :usuario_departamento , `usuario_ciudad` = :usuario_ciudad ,
+      `usuario_direccion` = :usuario_direccion, `usuario_barrio` = :usuario_barrio, `usuario_telefono` = :usuario_telefono , `usuario_correo` = :usuario_correo,
+      `usuario_password`  = :usuario_password , `usuario_tipo`= :usuario_tipo WHERE `usuario_id` = :usuario_id";
       $query = $this->_bdh->prepare($sql);
       $res = $query->execute(array(
         'usuario_nickname'   => $data[0]['value'],
@@ -138,12 +138,13 @@ class Principal {
         'usuario_telefono'   => $data[9]['value'],
         'usuario_correo'   => $data[10]['value'],
         'usuario_password'   => $data[11]['value'],
-        'usuario_tipo'   => $data[12]['value']
+        'usuario_tipo'   => $data[12]['value'],
+        "usuario_id" => $usuario_id
       ));
       return $res;
     } catch (PDOException $e) {
       echo "Error:" . $e->getMessage();
     }
   }
-
+}
   ?>

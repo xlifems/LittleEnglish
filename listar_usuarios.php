@@ -31,6 +31,7 @@
       <div class="col-md-12">
         <div class="page-header">
           <h2>Modificar datos usuarios</h2>
+          <input type="" id="usuario_id" class="form-control"  style="display:none">
         </div>
         <form id="form_usuario_update">
           <div class="row">
@@ -225,6 +226,7 @@
         $('#usuario_correo').val(data.usuario_correo);
         $('#usuario_password').val(data.usuario_password);
         $('#usuario_tipo').val(data.usuario_tipo);
+        $('#usuario_id').val(data.usuario_id);
       }
     });
   }
