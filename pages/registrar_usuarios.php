@@ -97,7 +97,7 @@
 			<label>Tipo de usuario</label>
 			<select name="usuario_tipo" class="form-control" required="">
 				<option value="admin">Administrador</option>
-				<option value="usuario">Usuario</option>
+				<option value="user">Usuario</option>
 			</select>
 			</div>
 

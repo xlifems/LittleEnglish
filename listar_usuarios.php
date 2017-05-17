@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title></title>
+  <title>Usuarios</title>
   <?php include 'mod/head.php'; ?>
 </head>
 <body>
@@ -14,6 +14,7 @@
         <table class="table table-condensed">
           <thead>
             <tr>
+              <th></th>
               <th>ID</th>
               <th>APELLIDOS</th>
               <th>NOMBRE</th>
@@ -30,16 +31,41 @@
   <?php include 'mod/footer.php' ?>
   <script>
   $(document).ready(function (){
+    cargarUsuarios();
+  });
+
+  function cargarUsuarios() {
     $.getJSON("ajax/ajax_actions.php", {accion: 'cargar_clientes'}, function(resp){
       var contenidoTabla =  tableUsuarios(resp);
       $('#tbody-usuarios').append(contenidoTabla);
     });
-  });
+  }
+
+  function eliminarUsuarios(usuario_id) {
+    var data = {
+      'accion' : 'eliminar_usuario',
+      'usuario_id' : usuario_id
+    }
+    $.ajax({
+      url : 'ajax/ajax_actions.php',
+      type : 'POST',
+      data : data,
+      success : function(respuesta) {
+        swal("Eliminado!", "Registro eliminados satisfactoriamente", "success");
+        $('#tbody-usuarios').html("");
+        cargarUsuarios();
+      }
+    });
+  }
 
   function tableUsuarios(data) {
     var col = '';
     $.each(data, function (i, item) {
       col += '<tr>';
+      col += '<td width="120">';
+      col += '<button type="button" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-edit"></span> Editar</button>';
+      col += '&nbsp; <button onclick="eliminarUsuarios('+item.usuario_id+')" type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></button>';
+      col += '</td>';
       col += '<td>'+item.usuario_id+'</td>';
       col += '<td>'+item.usuario_apellidos+'</td>';
       col += '<td>'+item.usuario_nombres+'</td>';
@@ -56,7 +82,7 @@
       progreso += '<button type="button" class="btn btn-info" style="margin-left: 1px;">'+i+'</button> ';
     }
     progreso += '</div>';
-  return progreso;
+    return progreso;
   }
   </script>
 </body>

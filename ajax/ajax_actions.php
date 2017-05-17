@@ -19,9 +19,9 @@ switch ($_REQUEST['accion']) {
 		echo $usu;
 		break;
 
-	case 'registrar_terreno':
-		$terr = $principal -> registrar_terreno($_POST['data']);
-		echo $terr;
+	case 'eliminar_usuario':
+		$res = $principal ->eliminar_usuarios($_REQUEST['usuario_id']);
+		echo $res;
 		break;
 
 	case 'login_user':
