@@ -1,7 +1,9 @@
-
+<?php session_start();?>
 <div class="row titulos">
 	<h1>Escuchemos como suenan las vocales</h1>
 </div>
+<h4><B>Usuario:</B> <?php echo $_SESSION["nombres"]?></h4>
+<input id="id_session" type="text" name="" value="<?php echo $_SESSION["id"] ?>" style="display:none">
 <div class="row">
 	<div class="col-sm-6 col-sm-offset-3">
 		<img id="vocal" src="" class="">

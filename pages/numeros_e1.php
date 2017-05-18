@@ -1,7 +1,9 @@
+<?php session_start();?>
 <div class="row titulos">
 	<h1>Escoger Sonido</h1>
-	<p>Marca el sonido que creas que corresponde al numero</p>
 </div>
+<h4><B>Usuario:</B> <?php echo $_SESSION["nombres"]?></h4>
+<input id="id_session" type="text" name="" value="<?php echo $_SESSION["id"] ?>" style="display:none">
 <div class="row">
 	<div class="col-sm-4 col-sm-offset-2">
 		<img id="numero_e1" src="img/numeros/e1.png" class="e1">
@@ -24,6 +26,7 @@
 		</div>
 	</div>
 </div>
+<p><b>Nota:</b> Escoge el sonido que creas que corresponde al numero en pantalla y click en el boton calificar <span class="glyphicon glyphicon-check"></span>. Si la opción es correcta continua.</p>
 <div class="row">
 	<div class="col-sm-3">
 		<button id="" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-chevron-left"></span></button>

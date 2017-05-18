@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +16,7 @@
           <thead>
             <tr>
               <th></th>
-              <th>ID</th>
+              <th>N IDENTIFICACION</th>
               <th>APELLIDOS</th>
               <th>NOMBRE</th>
               <th>USUARIO</th>
@@ -133,8 +134,8 @@
               </div>
             </div>
           </div>
-          <button type="submit" class="btn btn-default">Guardar</button>
-          <button class="btn btn-default">Cancelar</button>
+          <button type="submit" class="btn btn-success">Guardar Cambios</button>
+          <a href="" class="btn btn-danger">Cancelar</a>
         </form>
       </div>
     </div>
@@ -157,15 +158,26 @@
       'accion' : 'eliminar_usuario',
       'usuario_id' : usuario_id
     }
-    $.ajax({
-      url : 'ajax/ajax_actions.php',
-      type : 'POST',
-      data : data,
-      success : function(respuesta) {
-        swal("Eliminado!", "Registro eliminados satisfactoriamente", "success");
-        $('#tbody-usuarios').html("");
-        cargarUsuarios();
-      }
+    swal({
+      title: "Eliminar este registro?",
+      text: "Camcele o confirme para eliminar este registro!",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#DD6B55",
+      confirmButtonText: "Si, eliminar!",
+      closeOnConfirm: false
+    },
+    function(){
+      $.ajax({
+        url : 'ajax/ajax_actions.php',
+        type : 'POST',
+        data : data,
+        success : function(respuesta) {
+          swal("Eliminado!", "Registro eliminados satisfactoriamente", "success");
+          $('#tbody-usuarios').html("");
+          cargarUsuarios();
+        }
+      });
     });
   }
 
@@ -177,7 +189,7 @@
       col += '<button onclick="cargarDatosUsuarios('+item.usuario_id+')" type="button" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-edit"></span> Editar</button>';
       col += '&nbsp; <button onclick="eliminarUsuarios('+item.usuario_id+')" type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></button>';
       col += '</td>';
-      col += '<td>'+item.usuario_id+'</td>';
+      col += '<td>'+item.usuario_identificacion+'</td>';
       col += '<td>'+item.usuario_apellidos+'</td>';
       col += '<td>'+item.usuario_nombres+'</td>';
       col += '<td>'+item.usuario_nickname+'</td>';
@@ -232,5 +244,5 @@
   }
 
   </script>
-  </body>
-  </html>
+</body>
+</html>

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-05-2017 a las 21:47:53
--- Versión del servidor: 10.1.19-MariaDB
--- Versión de PHP: 5.6.28
+-- Tiempo de generación: 18-05-2017 a las 06:28:39
+-- Versión del servidor: 10.1.21-MariaDB
+-- Versión de PHP: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -1164,6 +1164,32 @@ INSERT INTO `ins_niveles` (`id_nivel`, `nombre_nivel`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `ins_niveles_usuarios`
+--
+
+CREATE TABLE `ins_niveles_usuarios` (
+  `id` int(11) NOT NULL,
+  `nivel_id` int(10) NOT NULL,
+  `usuario_id` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `ins_niveles_usuarios`
+--
+
+INSERT INTO `ins_niveles_usuarios` (`id`, `nivel_id`, `usuario_id`) VALUES
+(1, 1, 5),
+(2, 2, 5),
+(3, 1, 5),
+(4, 4, 5),
+(5, 3, 5),
+(6, 1, 5),
+(7, 4, 5),
+(8, 3, 5);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `ins_usuarios`
 --
 
@@ -1189,8 +1215,8 @@ CREATE TABLE `ins_usuarios` (
 --
 
 INSERT INTO `ins_usuarios` (`usuario_id`, `usuario_nickname`, `usuario_tidentificacion`, `usuario_identificacion`, `usuario_nombres`, `usuario_apellidos`, `usuario_departamento`, `usuario_ciudad`, `usuario_direccion`, `usuario_barrio`, `usuario_telefono`, `usuario_correo`, `usuario_password`, `usuario_tipo`) VALUES
-(5, 'niño1', '1', '123456', 'Felix Adrian', 'Pico', '18', 'Seleccioné un departamento', 'KR 43 A # 16 A SUR - 38, OF 203 SERVINFORMACION', 'chimalito', 2147483647, 'adr@gmail.com', '890504', 'user'),
-(6, 'jove', '1', '123456', 'jove', 'doria', '18', 'Seleccioné un departamento', 'KR 43 A # 16 A SUR - 38, OF 203 SERVINFORMACION', 'chimalito', 2147483647, 'adr@gmail.com', '1234', 'user');
+(5, 'niño1', '1', '123456', 'Felix Adrian', 'Masa Pico', '6', '205', 'KR 43 A # 16 A SUR - 38', 'chimalito', 2147483647, 'adr@gmail.com', '890504', 'user'),
+(6, 'jove', '1', '123456', 'joverti', 'Doria Pico', '5', '163', 'KR 43 A # 16 A SUR - 38, OF 203 SERVINFORMACION', 'chimalito', 2147483647, 'adr@gmail.com', '1234', 'user');
 
 --
 -- Índices para tablas volcadas
@@ -1201,6 +1227,12 @@ INSERT INTO `ins_usuarios` (`usuario_id`, `usuario_nickname`, `usuario_tidentifi
 --
 ALTER TABLE `ins_niveles`
   ADD PRIMARY KEY (`id_nivel`);
+
+--
+-- Indices de la tabla `ins_niveles_usuarios`
+--
+ALTER TABLE `ins_niveles_usuarios`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `ins_usuarios`
@@ -1217,6 +1249,11 @@ ALTER TABLE `ins_usuarios`
 --
 ALTER TABLE `ins_niveles`
   MODIFY `id_nivel` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT de la tabla `ins_niveles_usuarios`
+--
+ALTER TABLE `ins_niveles_usuarios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT de la tabla `ins_usuarios`
 --

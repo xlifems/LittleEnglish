@@ -79,12 +79,21 @@ $(document).ready(function (){
     var opc = $(this).text();
     opcionE1 = opc.trim();
     play_numeros(convertir_num(opcionE1));
+    $("#opc1").removeClass('btn-success');
+    $("#opc2").removeClass('btn-success');
+    $("#opc3").removeClass('btn-success');
     $(this).addClass('btn-success');
   });
 
   $("#calificar-e1").click( function () {
     calificar_e1();
   });
+
+  $("#btn-next-animal").click( function () {
+    swal("Lección completada!", "Conocemos un poco de animales", "success");
+    guardar_progreso( 3, $('#id_session').val());
+  });
+
 });
 
 function reproducir_sonido(animal) {
@@ -122,6 +131,8 @@ function next_vocal() {
     if ( vocalSiguiente == undefined){
       vocalSiguiente = 'a';
       vocalActual.removeClass(vocales[i]);
+      swal("Lección completada!", "Hemos escuchemos como suenan las vocales", "success");
+      guardar_progreso( 2, $('#id_session').val());
     }
   }
   vocalActual.attr('src','img/vocales/'+vocalSiguiente+'.png');
@@ -136,7 +147,9 @@ function next_numero() {
   if (numeroSiguiente > 10){
     numeroSiguiente = 1 ;
     numeroActual.removeClass(numeroActual.attr('class'));
-    swal("Lección completada!", "Hemos escuchemos como suenan los números!", "success")
+    swal("Lección completada!", "Hemos escuchemos como suenan los números!", "success");
+    guardar_progreso( 1, $('#id_session').val());
+    $("#next-leccion").fadeIn();
   }
   numeroActual.attr('src','img/numeros/'+numeroSiguiente+'.png');
   numeroActual.addClass(''+numeroSiguiente);
@@ -150,6 +163,11 @@ function next_e1() {
   for (i = 0; i < opciones.length; i++) {
     if ( numeroActual.attr('class') == opciones[i]) {
       numeroSiguiente = opciones[i+1];
+      if (opciones[i+1] == 'e8') {
+        numeroSiguiente = opciones[0];
+        swal("Lección completada!", "Hemos aprendido como suenan los números!", "success");
+        guardar_progreso( 4, $('#id_session').val());
+      }
     }
   }
   numeroActual.attr('src','img/numeros/'+numeroSiguiente+'.png');
@@ -188,22 +206,26 @@ function asignar_opciones(valor) {
   var opc1 = $('#opc1');
   var opc2 = $('#opc2');
   var opc3 = $('#opc3');
-  if (valor == 'e2') {
-    opc1.text('One');
-    opc2.text('Six');
-    opc3.text('Two');
+  if (valor == 'e1') {
+    opc1.html('<span class="glyphicon glyphicon-volume-up"></span> One');
+    opc2.html('<span class="glyphicon glyphicon-volume-up"></span> Nine');
+    opc3.html('<span class="glyphicon glyphicon-volume-up"></span> Six');
+  }else  if (valor == 'e2') {
+    opc1.html('<span class="glyphicon glyphicon-volume-up"></span> One');
+    opc2.html('<span class="glyphicon glyphicon-volume-up"></span> Six');
+    opc3.html('<span class="glyphicon glyphicon-volume-up"></span> Two');
   }else if (valor == 'e4') {
-    opc1.text('Four');
-    opc2.text('Three');
-    opc3.text('Nine');
+    opc1.html('<span class="glyphicon glyphicon-volume-up"></span> Four');
+    opc2.html('<span class="glyphicon glyphicon-volume-up"></span> Three');
+    opc3.html('<span class="glyphicon glyphicon-volume-up"></span> Nine');
   }else if (valor == 'e5') {
-    opc1.text('Ten');
-    opc2.text('Seven');
-    opc3.text('Five');
+    opc1.html('<span class="glyphicon glyphicon-volume-up"></span> Ten');
+    opc2.html('<span class="glyphicon glyphicon-volume-up"></span> Seven');
+    opc3.html('<span class="glyphicon glyphicon-volume-up"></span> Five');
   }else if (valor == 'e8') {
-    opc1.text('Eight');
-    opc2.text('Three');
-    opc3.text('Two');
+    opc1.html('<span class="glyphicon glyphicon-volume-up"></span> Eight');
+    opc2.html('<span class="glyphicon glyphicon-volume-up"></span> Three');
+    opc3.html('<span class="glyphicon glyphicon-volume-up"></span> Two');
   }
 }
 
@@ -241,12 +263,24 @@ function convertir_num(numero) {
     num = 10;
     break;
     default:
-      num = 0;
+    num = 0;
   }
   return num;
 }
 
 
-function functionName() {
-  sweetAlert("Oops...", "Something went wrong!", "error");
+function guardar_progreso( nivel_id, usuario_id) {
+  var data = {
+    'accion' : 'guardar_progreso',
+    'nivel_id' : nivel_id,
+    'usuario_id' : usuario_id
+  }
+  $.ajax({
+    url : 'ajax/ajax_actions.php',
+    type : 'POST',
+    data : data,
+    success : function(respuesta) {
+      console.log(respuesta);
+    }
+  });
 }

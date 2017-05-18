@@ -26,6 +26,7 @@ class Principal {
           $_SESSION["nickname"]  = $row["usuario_nickname"];
           $_SESSION["nombres"]   = $row["usuario_nombres"]." ".$row["usuario_apellidos"];
           $_SESSION["tipo"]      = $row["usuario_tipo"];
+          $_SESSION["id"]        = $row["usuario_id"];
           return 1;
         }
       }
@@ -82,19 +83,6 @@ class Principal {
     }
   }
 
-
-  function registrar_condiciones($data){
-    try {
-      session_start();
-      $query = $this->_bdh->prepare("INSERT INTO `ins_condiciones` (`condicion_temperatura`, `condicion_humedad`, `condicion_presipitacion`, `condicion_luminosidad`, `condicion_velocidad`, `ins_vuelo_vuelo_id`) VALUES ('1', '1', '1', '1', '1', '2')");
-      $res = $query->execute(array(
-      ));
-      return $res;
-    } catch (PDOException $e) {
-      echo "Error!" . $e->getMessage();
-    }
-  }
-
   function eliminar_usuarios($usuario_id){
     try {
       session_start();
@@ -144,6 +132,19 @@ class Principal {
       return $res;
     } catch (PDOException $e) {
       echo "Error:" . $e->getMessage();
+    }
+  }
+
+  function registrar_progreso($nivel_id, $usuario_id){
+    try {
+      $sql = "INSERT INTO `ins_niveles_usuarios` ( `nivel_id`, `usuario_id`) VALUES (:nivel_id, :usuario_id)";
+      $query = $this->_bdh->prepare($sql);
+      $res = $query->execute(array(
+        'nivel_id'  => $nivel_id,
+        'usuario_id' => $usuario_id ));
+      return $res;
+    } catch (PDOException $e) {
+      echo "Error!" . $e->getMessage();
     }
   }
 }

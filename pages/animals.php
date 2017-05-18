@@ -1,3 +1,9 @@
+<?php session_start();?>
+<div class="row titulos">
+	<h1>Animales</h1>
+</div>
+<h4><B>Usuario:</B> <?php echo $_SESSION["nombres"]?></h4>
+<input id="id_session" type="text" name="" value="<?php echo $_SESSION["id"] ?>" style="display:none">
 <section class="section-animal" id="section-1">
 	<div class="row">
 	<div class="flip col-sm-3" id="dog">
@@ -39,14 +45,10 @@
 </div>
 </section>
 <section class="section-animal" id="section-3">
+	<p><b>Nota:</b> Manten click sostenido sobre cada figura para escuchar y ver su traduccion en ingles. pulsa boton continuar para guardar progreso.</p>
 <div class="row">
-	<div class="col-sm-offset-4 col-sm-4">
-		<button type="button"  class="btn btn-info btn-lg">Continuar</button>
-	</div>	
+	<div class="col-sm-4">
+		<button id="btn-next-animal" type="button"  class="btn btn-success btn-lg">Continuar <span class="glyphicon glyphicon-chevron-right"></button>
+	</div>
 </div>
 </section>
-
-
-
-	
-

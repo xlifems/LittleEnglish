@@ -19,7 +19,7 @@ function route($page){
 		include 'pages/vocales.php';
 		break;
 		case 'numeros':
-		include 'pages/numeros.html';
+		include 'pages/numeros.php';
 		break;
 		case 'numeros_e1':
 		include 'pages/numeros_e1.php';
