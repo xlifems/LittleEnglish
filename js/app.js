@@ -21,7 +21,7 @@ $(document).ready(function (){
         if(resp == 1){
           window.location.href = "home.php";
         } else {
-          console.log("error logueo");
+          sweetAlert("Oops... ", "Usuarios o contraseña incorrecto!", "error");
         }
       })
     }
@@ -44,7 +44,7 @@ $(document).ready(function (){
           if(resp == 1){
             window.location.href = "home.php";
           } else {
-            console.log("error logueo");
+            sweetAlert("Oops... ", "Usuarios o contraseña incorrecto!", "error");
           }
         })
       }

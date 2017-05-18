@@ -15,16 +15,16 @@
 <div class="container" style="margin-top: 1%">
   <div class="row">
     <div class="col-md-4">
-    <section class="titulo">    
+    <section class="titulo">
       <h2>La Plataforma</h2>
-      <p align="rigth">Es una plataforma para la enseñanza y aprendizaje de ingles en niños de 0 a 3 años, 
-      a traves de contenido audio visual.</p>         
+      <p align="rigth">Es una plataforma para la enseñanza y aprendizaje de ingles en niños de 0 a 5 años, 
+      a traves de contenido audio visual.</p>
     </section>
     <section>
     <div class="panel panel-default">
-        <div class="panel-heading">         
+        <div class="panel-heading">
           <h3 class="panel-title" align="center">Iniciar Sesion</h3>
-        </div>        
+        </div>
         <div class="panel-body">
           <div class="form-group">
             <label for="">Usuario:</label>
@@ -36,14 +36,14 @@
           </div>
           <button class="btn btn-default btn-lg btn-block" id="ingresar">Ingresar</button>
         </div>
-      </div>      
-    </section>  
+      </div>
+    </section>
     </div>
-    <div class="col-md-8">   
+    <div class="col-md-8">
       <div class="col-md-12 centrar-logo">
-          <img src="img/welcome.png" class="img-responsive" > 
+          <img src="img/welcome.png" class="img-responsive" >
         </div>
-      </div>    
+      </div>
   </div>
 </div>
 <?php include 'mod/footer.php' ?>
