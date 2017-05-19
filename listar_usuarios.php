@@ -193,17 +193,17 @@
       col += '<td>'+item.usuario_apellidos+'</td>';
       col += '<td>'+item.usuario_nombres+'</td>';
       col += '<td>'+item.usuario_nickname+'</td>';
-      col += '<td>'+progreso(item.usuario_id)+'</td>';
+      col += '<td id="td-nivels-'+item.usuario_id+'"><button onclick="consultarNivelesCompletados('+item.usuario_id+')" type="button" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-eye-open"></span> Ver</button></td>';
       col += '</tr>';
     });
     return col;
   }
 
-  function progreso(valor) {
+  function progreso(data) {
     var progreso = '<div class="btn-group" role="group" aria-label="...">';
-    for (i = 0; i < parseInt(valor); i++) {
-      progreso += '<button type="button" class="btn btn-info" style="margin-left: 1px;">'+i+'</button> ';
-    }
+    $.each(data, function (i, item) {
+      progreso += '<button type="button" class="btn btn-info" style="margin-left: 1px;">'+item.nombre_nivel+'</button> ';
+    });
     progreso += '</div>';
     return progreso;
   }
@@ -243,6 +243,20 @@
     });
   }
 
+  function consultarNivelesCompletados(usuario_id) {
+    var elemento = $('#td-nivels-'+usuario_id);
+    var contenido = '<div class="btn-group" role="group" aria-label="...">';
+    $.getJSON("ajax/ajax_actions.php", {accion: 'consultar_progreso', usuario_id : usuario_id }, function(resp){
+      $.each(resp, function (i, item) {
+        contenido += '<button type="button" class="btn btn-info" style="margin-left: 1px;">'+item.nombre_nivel+'</button> ';
+      });
+      contenido += '</div>';
+      elemento.fadeOut(200, function() {
+        elemento.html(contenido);
+        elemento.fadeIn(1000);
+      });
+    });
+  }
   </script>
 </body>
 </html>

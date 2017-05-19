@@ -142,10 +142,23 @@ class Principal {
       $res = $query->execute(array(
         'nivel_id'  => $nivel_id,
         'usuario_id' => $usuario_id ));
-      return $res;
-    } catch (PDOException $e) {
-      echo "Error!" . $e->getMessage();
+        return $res;
+      } catch (PDOException $e) {
+        echo "Error!" . $e->getMessage();
+      }
     }
+
+    function consultar_progreso($usuario_id)  {
+      try {
+        $sql= "SELECT DISTINCT nivel_id, nombre_nivel FROM ins_niveles_usuarios , ins_niveles WHERE `usuario_id` =:usuario_id AND ins_niveles.id_nivel = ins_niveles_usuarios.nivel_id ";
+        $query = $this->_bdh->prepare($sql);
+        $query->execute(array('usuario_id' => $usuario_id ));
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+        $this->_bdh = null;
+      } catch (PDOException $e) {
+        echo "Error:" . $e->getMessage();
+      }
+    }
+
   }
-}
   ?>

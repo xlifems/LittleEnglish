@@ -39,6 +39,11 @@ switch ($_REQUEST['accion']) {
 		echo json_encode($cli);
 		break;
 
+	case 'consultar_progreso';
+		$cli = $principal -> consultar_progreso ( $_REQUEST['usuario_id']);
+		echo json_encode($cli);
+		break;		
+
 	case 'login_user':
 		$user = trim($_REQUEST['usuario']);
 		$pass = $_REQUEST['password'];
